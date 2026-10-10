@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gixo"
-version = "0.0.1"
+dynamic = ["version"]
 description = "Validate Git branch names and commit messages."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -35,6 +35,9 @@ Changelog = "https://github.com/mcmantai/gixo/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+
+[tool.hatch.version]
+path = "src/gixo/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/gixo"]
