@@ -5,7 +5,7 @@ from gixo.results import ValidationResult, Violation
 from gixo.validators.branch import validate_branch
 from gixo.validators.commit import validate_commit_message
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 __all__ = [
     "ConfigurationError",
