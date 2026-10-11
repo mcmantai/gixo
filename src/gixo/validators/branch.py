@@ -1,9 +1,6 @@
 """Branch-name validation."""
 
-import re
-from functools import lru_cache
-
-from gixo.exceptions import ConfigurationError
+from gixo._regex import compile_pattern
 from gixo.results import ValidationResult
 
 
@@ -24,7 +21,7 @@ def validate_branch(name: str, *, pattern: str) -> ValidationResult:
     Raises:
         ConfigurationError: If ``pattern`` is not a valid regular expression.
     """
-    regex = _compile(pattern)
+    regex = compile_pattern(pattern, "branch pattern")
 
     if not name.strip():
         return ValidationResult.fail("branch.empty", "Branch name is empty.")
@@ -38,11 +35,3 @@ def validate_branch(name: str, *, pattern: str) -> ValidationResult:
             f"Branch name {name!r} does not match required pattern '{pattern}'.",
         )
     return ValidationResult.ok()
-
-
-@lru_cache(maxsize=32)
-def _compile(pattern: str) -> re.Pattern[str]:
-    try:
-        return re.compile(pattern)
-    except re.error as err:
-        raise ConfigurationError(f"Invalid branch pattern '{pattern}': {err}") from err
