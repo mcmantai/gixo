@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `validate_branch()` for checking branch names against a regex pattern.
+- `validate_commit_message()` for checking commit messages against Conventional
+  Commits, with configurable types, subject length, and ticket requirement.
 - `ValidationResult`, `Violation`, `GixoError`, and `ConfigurationError` public types.
 - `py.typed` marker so type checkers use gixo's type hints.
 
